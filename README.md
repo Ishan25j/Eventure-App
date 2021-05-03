@@ -31,19 +31,54 @@ Check and verify that each test passes and if you are facing any issue than try 
 
 ### Common folder:
 **Small Note: **
-So common folder is the submodule which orginally shared the common source which is been published on npm websites. Nothing that much important if you delete that submodule as it is already published and hosted on npm
+- So common folder is the submodule which orginally shared the common source which is been published on npm websites. Nothing that much important if you delete that submodule as it is already published and hosted on npm
 
-After testing and installing package make you you have ingress-nginx enable on your system.
+- After testing and installing package make you you have ingress-nginx enable on your system.
 Now go to you host file
 In Windows: C:\Windows\System32\Drivers\etc\hosts
 In Linux\MacOS: \etc\hosts
 Edit it at the bottom add 127.0.0.1 eventure.dev
 and save it
-If you are using minikube then run `minikube ip`
+- If you are using minikube then run `minikube ip`
 And use that ip instead of 127.0.0.1 (i.e. minikube_ip eventure.dev)
 So, this tries to run eventure.dev locally instead of finding it online on browser
 
-Now after completing all steps and configuration run
+Now after completing all steps and configuration let's run the application.
+
+## Running it locally:
+Now you need to create three kubernetes secrets in order to run this. So just edit the three givn commands values as per the requirement
+
+For JWT:
+```bash
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
 ```
+
+For stripe private key:
+```bash
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<use private key given by stripe>
+```
+
+For stripe public key:
+```bash
+kubectl create secret generic stripe-p-secret --from-literal=STRIPE_P_KEY=<use private key given by stripe>
+```
+
+Now this just run 
+
+```bash
 skaffold dev
 ```
+
+and it will start the application.
+
+## Resource link:
+
+For [docker](https://www.docker.com/get-started)
+
+For [kubernetes](https://kubernetes.io/docs/tasks/tools/)
+
+If you want to use [minikube](https://minikube.sigs.k8s.io/docs/start/)
+
+For [skaffold](https://skaffold.dev/docs/quickstart/)
+
+For [ingress-nginx](https://kubernetes.github.io/ingress-nginx/deploy/) setup.

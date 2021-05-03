@@ -1,6 +1,6 @@
 # Eventure-App
 ---
-Eventure App is create for selling tickets online for various events. So basically the events is created having limited ticket available and also the price is given.
+Eventure App is created for selling tickets online for various events. So basically the events is created having limited ticket available and also the price is given.
 As, we all know that there is huge traffic in buying and selling ticket online and we need a better system for managing various events and also the concurreny and the systme need to be scalable.
 
 So, keeping this idea in mind, this app is created using microservices having total 6 services which can be scaled easily.

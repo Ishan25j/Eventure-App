@@ -1,0 +1,88 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.welcome-text {
+    /* display: block; */
+    opacity: 0.8;
+    background-color: black;
+    font-weight: 500;
+    font-size: xx-large;
+    padding: 1rem;
+}
+
+.welcome-home {
+    padding: 5rem;
+    padding-top: 5.5rem;
+    text-align: center;
+    color: white;
+    left: 20%;
+    background-image: url('../public/concert.png');
+    /* background-image: url('../public/con2.png'); */
+    /* opacity: 0.5; */
+    /* background-color: black; */
+}
+
+.events {
+    position: relative;
+    cursor: pointer;
+}
+
+.readmore {
+    color: blue;
+}
+
+.card-body hr {
+    width: 15rem;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 40;
+    border: 2px solid orange;
+}
+
+.footer {
+    position: fixed;
+    /* height: 10%; */
+    bottom: 0%;
+    width: 100%;
+    padding: 3rem;
+    margin-top: 5rem;
+    margin-bottom: 0rem;
+    background-color: #e3f2fd;
+    align-items: baseline;
+}
+
+.alert-danger {
+    display: inline-block;
+}
+
+.card-text {
+    margin: 2rem 0;
+}
+
+div.no-event {
+    height: 100%;
+    width: 100;
+    margin-top: 10rem;
+    align-content: center;
+    text-align: center;
+}
+
+.space {
+    position: relative;
+    padding: 5rem;
+}

@@ -40,7 +40,8 @@ const SignUp = () => {
                     className="form-control" 
                     aria-describedby="emailHelp"
                     value={email}
-                    onChange={e => setEmail(e.target.value)} 
+                    onChange={e => setEmail(e.target.value)}
+                    autoFocus
                     />
                     <div id="emailHelp" className="form-text"><i>Write valid email.</i></div>
                 </div>
@@ -56,6 +57,7 @@ const SignUp = () => {
                 { errors && <div class="alert alert-danger" role="alert">{errors}</div>}
                 <button type="submit" className="btn btn-primary">Submit</button>    
             </form>
+            <div className="space-15"></div>
         </div>
     );
 }

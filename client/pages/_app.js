@@ -11,7 +11,7 @@ const  MyApp = ({ Component, pageProps, currentUser }) => {
     <div>
       <Navbar currentUser={currentUser} />
       <Component currentUser={currentUser} {...pageProps} />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

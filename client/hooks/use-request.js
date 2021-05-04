@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 
-export default ({ url, method, body, onSuccess }) => {
+const useRequest = ({ url, method, body, onSuccess }) => {
 
     // * use state for errors
     const [errors, setErrors] = useState(null);
@@ -21,14 +21,20 @@ export default ({ url, method, body, onSuccess }) => {
             return response.data;
 
         } catch (err) {
+            try {
             setErrors((<div className="alert alert-danger">
             <h4>Ooops...</h4>
             <ul className="my-0">
               {err.response.data.errors.map(err => <li key={err.message}>{err.message}</li>)}
             </ul>
-          </div>))
+            </div>))
+            } catch (error) {
+                console.log('Error:',error.message);
+            }
         }
     };
 
     return { doRequest, errors };
 }
+
+export default useRequest;

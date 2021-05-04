@@ -17,6 +17,7 @@ import { errorHandler, NotFoundError, currentUser } from '@ijeventure/common';
 import { newOrderRouter } from './routes/new';
 import { showOrderRouter } from './routes/show';
 import { indexOrderRouter } from './routes';
+import { sellOrderRouter } from './routes/sell';
 
 // * create express app
 const app = express();
@@ -47,6 +48,7 @@ app.use(currentUser);
 app.use(newOrderRouter);
 app.use(showOrderRouter);
 app.use(indexOrderRouter);
+app.use(sellOrderRouter);
 
 // * It matches all requests which comes and will throw the NotFoundError class
 /* 

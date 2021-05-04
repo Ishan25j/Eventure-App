@@ -17,7 +17,8 @@ router.post('/api/events/new', requireAuth, [
     body('description')
         .not()
         .isEmpty()
-        .withMessage('Description is required'),
+        .custom((input: string) => input.trim().length < 2000)
+        .withMessage('Description is required and length should be less than 2000 characters'),
     body('date')
         .not()
         .isEmpty()

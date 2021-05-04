@@ -22,7 +22,6 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
         // * Mark the event as being reserved by setting its orderId propert
         event.set({
             ticketsLeft: Number(event.ticketsLeft + 1),
-            version: data.version
         });
 
         // * Save the ticket

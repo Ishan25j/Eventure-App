@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
-import buildClient from "../../api/build-client";
 
 const OrderShow = ({ order, env, currentUser }) => {
     const [timeLeft, setTimeLeft] = useState(0);
@@ -30,19 +29,33 @@ const OrderShow = ({ order, env, currentUser }) => {
   }, [order]);
 
   if (timeLeft < 0) {
-    return <div>Order Expired</div>;
+
+    Router.push('/orders/');
+    
+    return (
+      <div>
+        <h1 
+        style={{'textAlign': 'center', 'color': 'red', 'margin': '10rem'}}>
+          Order Expired
+        </h1>
+      </div>
+    );
   }
 
   return (
     <div>
-      Time left to pay: {timeLeft} seconds
-      <StripeCheckout
-        token={({ id }) => doRequest({ token: id })}
-        stripeKey={env}
-        amount={order.event.price * 100}
-        email={currentUser.email}
-      />
-      {errors}
+      <center>
+        <h1 style={{'margin': '10rem', 'color': '#007bff'}}>
+          Time left to pay: {timeLeft} seconds
+        </h1>  
+        <StripeCheckout
+          token={({ id }) => doRequest({ token: id })}
+          stripeKey={env}
+          amount={order.event.price * 100}
+          email={currentUser.email}
+        />
+        {errors}
+      </center>
     </div>
   );
 };

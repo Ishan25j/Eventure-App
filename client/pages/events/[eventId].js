@@ -9,19 +9,35 @@ const EventShow = ({ event }) => {
         onSuccess: (order) =>  Router.push('/orders/[orderId]', `/orders/${order.id}`)
     });
 
-    // console.log(event);
+    // * set color red if ticket left is less than 5
+    const Styles = (ticket) => {
+        if (ticket < 5) {
+          return {
+            'color': 'red'
+          }
+        } else {
+          return {
+            'color': '#007bff'
+          }
+        }
+      }
 
     return (
-        <div>
-            <h1>{event.name}</h1>
-            <h3>{event.description}</h3>
-            <h4>Event is on {new Date(event.date).getDate()}</h4>
-            <h4>Ticket Left: {event.ticketsLeft}</h4>
-            <h4>Price: {event.price}</h4>
-            { errors }
-            { event.ticketsLeft === 0 && <div class="alert alert-danger" role="alert"><center>Ticket Not Available 😔. <br/> Come after Sometime.</center></div>}
-            <br/>
-            <button onClick={() => doRequest()} className="btn btn-primary" disabled={event.ticketsLeft <= 0}>Purchase</button>
+        <div className="container-fluid">
+            <center>
+                <h1>{event.name}</h1>
+                <hr/>
+                <p className="event-date">Event is on: <strong>{new Date(event.date).getDate()} - {new Date(event.date).getMonth()} - {new Date(event.date).getFullYear()}</strong></p>
+                <p className="event-ticket" style={Styles(event.ticketsLeft)}>Ticket Left: {event.ticketsLeft}</p>
+                <p className="event-price">To pay: <br/> <span className="event-price" style={{'color': 'green'}}>{event.price}$</span></p>
+                { errors }
+                { event.ticketsLeft === 0 && <div class="alert alert-danger" role="alert"><center>Ticket Not Available 😔. <br/> Come after Sometime.</center></div>}
+                <button onClick={() => doRequest()} className="btn btn-primary purchase" disabled={event.ticketsLeft <= 0}>Purchase</button>
+                <br/>
+                <hr/>
+            </center>
+                <h3>Description:</h3>
+                <p style={{'marginLeft': '5rem'}}> {event.description}</p>
         </div>
     );
 }

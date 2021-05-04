@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Router from 'next/router';
 import useRequest from "../../hooks/use-request";
+import Link from 'next/link';
 
-const NewEvent = () => {
+const NewEvent = ({ currentUser }) => {
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -11,6 +12,10 @@ const NewEvent = () => {
     const [price, setPrice] = useState('');
 
     var clicked = false;
+
+    if (!currentUser) {
+        clicked = true
+    }
 
     const { doRequest, errors } = useRequest({
         url: '/api/events/new',
@@ -45,6 +50,7 @@ const NewEvent = () => {
                     value={name}
                     onChange={e => setName(e.target.value)}
                     required
+                    autoFocus
                     />
                 </div>
                 <div className="mb-3">
@@ -95,6 +101,20 @@ const NewEvent = () => {
                     />
                 </div>
             { errors && <div className="alert alert-danger" role="alert">{errors}</div>}
+            { 
+                !currentUser && (
+                    <div>
+                        <div className="alert alert-danger" role="alert">You have not logged In</div>
+                        <Link href="/auth/signup">
+                            <button className="btn btn-success signup">Sign Up</button>
+                        </Link> 
+                        <Link href="/auth/signin">
+                            <button className="btn btn-success signin">Sign In</button>
+                        </Link> 
+                    </div>
+                )
+            }
+            <br/>
             <button type="submit" className="btn btn-primary" disabled={clicked} >Submit</button>
             </form>
         </div>

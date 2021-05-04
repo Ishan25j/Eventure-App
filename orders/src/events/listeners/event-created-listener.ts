@@ -28,7 +28,7 @@ export class EventCreatedListener extends Listener<EventCreatedEvent> {
 
         await event.save();
         
-        console.log(event);
+        // console.log(event);
 
         // * send success acknowledgement to NATS server
         msg.ack();

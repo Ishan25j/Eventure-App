@@ -35,7 +35,7 @@ a {
     /* background-color: black; */
 }
 
-.events {
+.card {
     position: relative;
     cursor: pointer;
 }
@@ -51,13 +51,14 @@ a {
     padding: 0;
     left: 0;
     top: 40;
-    border: 2px solid orange;
+    border: 2px solid rgb(100, 22, 124);
 }
 
 .footer {
-    position: fixed;
-    /* height: 10%; */
-    bottom: 0%;
+    /* position: fixed; */
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
     width: 100%;
     padding: 3rem;
     margin-top: 5rem;
@@ -70,8 +71,23 @@ a {
     display: inline-block;
 }
 
+.card-body {
+    min-height: 1rem;
+    background-color: #e3f2fd;
+    padding: 0.5rem;
+}
+
+.card-title {
+    padding: 0.5rem;
+}
+
 .card-text {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
+    min-height: 15.7rem;
+}
+
+.text {
+    margin: 0.5rem;
 }
 
 div.no-event {
@@ -82,7 +98,70 @@ div.no-event {
     text-align: center;
 }
 
+.list-group-item {
+    height: 8rem;
+}
+
+.learnmore {
+    position: absolute;
+    bottom: 1rem;
+    /* color: orange; */
+    background-color: rgb(100, 22, 124);
+    text-align: center;
+}
+
+.ticketleft {
+    position: absolute;
+    bottom: 0.45rem;
+    right: 2rem;
+    color: #007bff;
+}
+
+.signup,
+.signin {
+    margin-left: 0.5rem;
+}
+
 .space {
     position: relative;
     padding: 5rem;
+}
+
+.event-date {
+    position: absolute;
+    right: 5rem;
+}
+
+.event-ticket {
+    position: relative;
+    color: #007bff;
+    font-size: larger;
+    /* right: 5rem; */
+}
+
+.event-price {
+    position: relative;
+    font-size: larger;
+    /* right: 5rem; */
+}
+
+.purchase {
+    position: relative;
+}
+
+button {
+    margin: 1rem;
+}
+
+.event-name-order {
+    color: #007bff;
+}
+
+.event-name-order {
+    color: #007bff;
+}
+
+.order-title {
+    margin: 2rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

@@ -14,17 +14,16 @@ const Navbar =  ({ currentUser }) => {
     .map(({ label, href }) => {
         return <li key={href} className="nav-item">
             <Link href={href}>
-                <a className="nav-link">{label}</a>
+                <button className={label === 'Sign In' ? "nav-link btn signin" : "nav-link btn"}>{label}</button>
             </Link>
         </li>
     })
 
 
-    return <nav className="navbar navbar-light" style={{"backgroundColor": "#e3f2fd"}}>
+    return <nav className="navbar sticky-top navbar-dark" style={{"backgroundColor": "#252525"}}>
         <Link href="/">
             <a className="navbar-brand">Eventure</a>
         </Link>
-
         <div className="d-flex justify-content-end">
            <ul className="nav d-flex align-items-center">
              {links}  

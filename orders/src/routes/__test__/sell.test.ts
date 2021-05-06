@@ -60,9 +60,13 @@ it('returns error if ticket is expired', async () => {
 
 it('sell the ticket of given order', async () => {
     const eventId = mongoose.Types.ObjectId().toHexString();
+    
+    const eventDate = new Date();
+    eventDate.setSeconds(eventDate.getSeconds() + 12*60);
+
     const event = Event.build({
         id: eventId,
-        date: new Date('2022-06-20'),
+        date: eventDate,
         price: 20,
         name: 'concert',
         ticketsLeft: 20,
@@ -98,3 +102,6 @@ it('sell the ticket of given order', async () => {
         })
         .expect(200);
 });
+
+// * put below code in sell.ts for manual log testing to see whether ticket is valid
+// console.log(order.event.date, order.event.date.getTime() , new Date().getTime(), (order.event.date.getTime() - new Date().getTime())/1000 - (10*60), (order.event.date.getTime() - new Date().getTime())/1000 - (10*60)< 0);

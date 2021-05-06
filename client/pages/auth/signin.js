@@ -30,11 +30,11 @@ const SignUp = () => {
     return (
         <div className="container">
             <br/>
-            <h1>Sign In</h1>
+            <h1 style={{color: 'white'}}>Sign In</h1>
             <hr/>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">Email address</label>
+                    <label className="form-label">Email address</label>
                     <input
                     type="email" 
                     className="form-control" 
@@ -43,10 +43,10 @@ const SignUp = () => {
                     onChange={e => setEmail(e.target.value)}
                     autoFocus
                     />
-                    <div id="emailHelp" className="form-text"><i>Write valid email.</i></div>
+                    <div id="emailHelp" className="form-text" style={{color: 'white'}}><i>Write valid email.</i></div>
                 </div>
                 <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Password</label>
+                        <label className="form-label">Password</label>
                         <input 
                         type="password"
                         className="form-control"
@@ -54,7 +54,9 @@ const SignUp = () => {
                         onChange={e => setPassword(e.target.value)}
                         />
                 </div>
-                { errors && <div class="alert alert-danger" role="alert">{errors}</div>}
+                { errors && <div className="alert alert-danger" role="alert">{errors}</div>}
+                <br/>
+                <br/>
                 <button type="submit" className="btn btn-primary">Submit</button>    
             </form>
             <div className="space-15"></div>

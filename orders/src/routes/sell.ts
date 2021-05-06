@@ -29,10 +29,10 @@ router.post('/api/orders/sell/', requireAuth, [
     // * throw error if order not found
     if (!order) {
         throw new NotFoundError();
-    }
+    }    
 
-    // * throw error if ticket is expired
-    if (order.event.date < new Date()) {
+    // * throw error if ticket is expired / event starts under 10 minutes
+    if ((order.event.date.getTime() - new Date().getTime())/1000 - (10*60) < 0) {
         throw new BadRequestError('Ticket is expired');
     }
 

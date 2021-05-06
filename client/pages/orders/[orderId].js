@@ -3,17 +3,55 @@ import StripeCheckout from 'react-stripe-checkout';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
-const OrderShow = ({ order, env, currentUser }) => {
+const OrderShow = ({ order, reqErr, env, currentUser }) => {
+
+    // * Handle Error
+    if (order === undefined || reqErr) {
+      return (
+        <div className="handle-error">
+          <center>
+            <h1 style={{color: 'red', margin: '20rem auto'}}>{reqErr.message}</h1>
+          </center>
+        </div>
+      );
+    }
+
     const [timeLeft, setTimeLeft] = useState(0);
+    const [success, setSuccess] = useState(false);
+
     const { doRequest, errors } = useRequest({
         url: '/api/payments',
         method: 'post',
         body: {
         orderId: order.id,
         },
-        onSuccess: () => Router.push('/')
+        onSuccess: () => { setSuccess(true); setTimeout(() => {Router.push('/')}, 2000) }
   });
 
+  // * See the formate of the given date
+  var dateObtained = order.event.date;
+  if ( order.event.date[order.event.date.length - 1] === 'Z') {
+    dateObtained = order.event.date.slice(0, -1);
+  }
+
+  // * can't pay money before 10 mintues of the event timing
+  if ((new Date(dateObtained) - new Date())/1000 - (10*60) < 0) {
+    return (
+        <div className="container-fluid">
+        <center>
+            <h1>Ticket for <strong>{order.event.name}'s</strong> event is expired</h1>
+            <h2>Redirecting to Home Page</h2>
+            {
+                setTimeout(() => {
+                    Router.push('/');
+                },2000)
+            }
+        </center>
+    </div>
+    )
+  }
+
+  // * To setting a timer to pay in required time
   useEffect(() => {
     const findTimeLeft = () => {
       const msLeft = new Date(order.expiresAt) - new Date();
@@ -28,10 +66,9 @@ const OrderShow = ({ order, env, currentUser }) => {
     };
   }, [order]);
 
+  // * If Time is over than got to home page
   if (timeLeft < 0) {
-
     Router.push('/orders/');
-    
     return (
       <div>
         <h1 
@@ -45,15 +82,24 @@ const OrderShow = ({ order, env, currentUser }) => {
   return (
     <div>
       <center>
-        <h1 style={{'margin': '10rem', 'color': '#007bff'}}>
-          Time left to pay: {timeLeft} seconds
-        </h1>  
-        <StripeCheckout
-          token={({ id }) => doRequest({ token: id })}
-          stripeKey={env}
-          amount={order.event.price * 100}
-          email={currentUser.email}
-        />
+        {
+          !success
+          ?
+          <div>
+            <h1 style={{'margin': '10rem', 'color': '#007bff'}}>
+              Time left to pay: {timeLeft} seconds
+            </h1>  
+            <StripeCheckout
+              token={({ id }) => doRequest({ token: id })}
+              stripeKey={env}
+              amount={order.event.price * 100}
+              email={currentUser.email}
+            />
+          </div>
+          :
+          <h1 style={{'margin': '10rem', 'color': '#007bff'}}>Payment SuccessFull 😃</h1>
+        }
+
         {errors}
       </center>
     </div>
@@ -63,9 +109,17 @@ const OrderShow = ({ order, env, currentUser }) => {
 OrderShow.getInitialProps = async (context, client) => {
   const { orderId } = context.query;
 
-  const { data } = await client.get(`/api/orders/${orderId}`);
+  try {
+    const { data } = await client.get(`/api/orders/${orderId}`); 
+    
+    return { order: data.order, env: data.env };
 
-  return { order: data.order, env: data.env };
+  } catch (error) {
+    
+    console.log(error.message);
+    return { reqErr: error.message };
+  }
+
 };
 
 export default OrderShow;

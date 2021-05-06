@@ -37,11 +37,11 @@ const NewEvent = ({ currentUser }) => {
     return (
         <div className="container">
             <br/>
-            <h1><center>Create Event</center></h1>
+            <h1 style={{'color': 'white'}}><center>Create Event</center></h1>
             <br/>
             <form onSubmit={onSubmit}>
                 <div className="mb-3">
-                    <label for="name" className="form-label">Event Name:</label>
+                    <p className="form-label">Event Name:</p>
                     <input 
                     type="text" 
                     className="form-control" 
@@ -54,7 +54,7 @@ const NewEvent = ({ currentUser }) => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label for="description" className="form-label">Description:</label>
+                    <p className="form-label">Description:</p>
                     <textarea 
                     className="form-control" 
                     id="description" 
@@ -66,8 +66,7 @@ const NewEvent = ({ currentUser }) => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label for="datetime" className="form-label">Date Time Picker:</label>
-                    <br/>
+                    <p className="form-label">Date Time Picker:</p>
                     <input 
                     type="datetime-local" 
                     id="datetime"
@@ -77,8 +76,7 @@ const NewEvent = ({ currentUser }) => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label for="ticket" className="form-label">Total Tickets:</label>
-                    <br/>
+                    <p className="form-label">Total Tickets:</p>
                     <input 
                     type="number" 
                     id="ticket" 
@@ -89,8 +87,7 @@ const NewEvent = ({ currentUser }) => {
                     />
                 </div>
                 <div className="mb-3">
-                    <label for="price" className="form-label">Price:</label>
-                    <br/>
+                    <p className="form-label">Price:</p>
                     <input 
                     type="number" 
                     id="price" 

@@ -1,6 +1,17 @@
 import useRequest from "../../../hooks/use-request";
 import Router from "next/router";
-const OrderSell = ({ order }) => {
+const OrderSell = ({ order, reqErr }) => {
+
+    // * Handle Error
+    if (order === undefined || reqErr) {
+        return (
+            <div className="handle-error">
+                <center>
+                <h1 style={{color: 'red', margin: '20rem auto'}}>{reqErr.message}</h1>
+                </center>
+            </div>
+            );
+    }
 
     const { doRequest, errors } = useRequest({
         url: '/api/orders/sell',
@@ -9,14 +20,36 @@ const OrderSell = ({ order }) => {
         onSuccess: () =>  Router.push('/orders/')
     });
 
-    console.log(order);
+    // console.log(order);
+    // * See the formate of the given date
+    var dateObtained = order.event.date;
+    if ( order.event.date[order.event.date.length - 1] === 'Z') {
+      dateObtained = order.event.date.slice(0, -1);
+    }
+
+    // * before 10 min.. no one can purchase ticket
+    if ((new Date(dateObtained) - new Date())/1000 - (10*60) < 0) {
+        return (
+            <div className="container-fluid">
+            <center>
+                <h1>Event: <strong>{order.event.name}'s</strong> ticket cant be bought before 10 min.. of the event</h1>
+                <h2>Redirecting to Home Page</h2>
+                {
+                    setTimeout(() => {
+                        Router.push('/');
+                    },1000)
+                }
+            </center>
+        </div>
+        )
+    }
 
     return (
         <div className="container-fluid">
             <center>
-                <h1>Are you sure you want to sell <strong>{order.event.name}'s</strong> event ticket</h1>
+                <h1>Are you sure you want to sell <strong style={{'color': 'red'}}>{order.event.name}'s</strong> event ticket ?</h1>
                 <hr/>
-                <p>Event is on: <strong>{new Date(order.event.date).getDate()} - {new Date(order.event.date).getMonth()} - {new Date(order.event.date).getFullYear()}</strong></p>
+                <p>Event is on: <strong>{new Date(order.event.date).getUTCDate()} - {new Date(order.event.date).getUTCMonth()} - {new Date(order.event.date).getFullYear()}</strong></p>
                 { errors }
                 <br/>
                 <button onClick={() => doRequest()} className="btn btn-danger purchase" >Sell</button>
@@ -31,10 +64,17 @@ OrderSell.getInitialProps = async (context, client) => {
     // * will get the ticketId from the params
     const { orderId } = context.query;
 
-    const { data } = await client.get(`/api/orders/${orderId}`);
+    try {
+        const { data } = await client.get(`/api/orders/${orderId}`);
+        
+        return { order: data.order };
 
+    } catch (error) {
+        
+        console.log(error.message);
+        return {reqErr: error.message};
+    }
 
-    return { order: data.order };
 }
 
 export default OrderSell;

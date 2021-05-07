@@ -1,6 +1,6 @@
 import useRequest from "../../../hooks/use-request";
 import Router from "next/router";
-const OrderSell = ({ order, reqErr }) => {
+const OrderSell = ({ order, reqErr, currentUser }) => {
 
     // * Handle Error
     if (order === undefined || reqErr) {
@@ -13,6 +13,18 @@ const OrderSell = ({ order, reqErr }) => {
         );
     }
 
+        // * If user is not logged In
+    if (currentUser === undefined || currentUser === null) {
+        setTimeout(() => {Router.push('/')}, 2000); 
+        return (
+        <div style={{marginTop: '5rem', color: 'red', fontSize: 'larger'}}>
+            <center>
+            Please Logged In first to sell this ticket
+            </center>
+        </div>
+        )
+    }
+
     const { doRequest, errors } = useRequest({
         url: '/api/orders/sell',
         method: 'post',
@@ -20,7 +32,6 @@ const OrderSell = ({ order, reqErr }) => {
         onSuccess: () =>  Router.push('/orders/')
     });
 
-    // console.log(order);
     // * See the formate of the given date
     var dateObtained = order.event.date;
     if ( order.event.date[order.event.date.length - 1] === 'Z') {

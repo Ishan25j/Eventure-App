@@ -1,25 +1,26 @@
 # Eventure-App
 ---
 
-Eventure is a WebApp created for selling tickets for various events (i.e. concerts, DJ parties, Sports tickets and many more...) on online platform.
+Eventure is a WebApp created for selling tickets for various events (i.e. concerts, DJ parties, Sports event tickets and many more...) on online platform.
 
-## So what's the catch and why Eventure ?
+## Why Eventure and what is the difference?
+Let's take example to understand it easily.
+- Have you ever booked an indian railway ticket?
+If yes, then you might have surely experience that servers are some times hangy (gets hangs) and slow down very frequently.
 
-- Have you ever booked a indian railway ticket?
-If yes, then you have surely experience that servers are some times hangy (gets hangs) and slow down very frequently.
-
-- So why is it happening?
-The main reason is the one server can't handle so much traffic at a time and need to add more servers at that movement which is some how hard.
+- So, why is it happening?
+The main reason is, the Single Monolithic Server can't handle that much traffic at a time and need to add more servers at that movement which is some how hard.
 
 - So, By keeping all this problem in mind. Eventure WebApp is been created using microservices architecture which can be scaled very easily using kubernetes.
 
 ## Key feature of Eventure WebApp:
 
-- Has Microservice architecture
-- Runs in docker container which is maintained by kubernetes and skaffold
+- It has Microservice architecture
+- It runs in docker container which is maintained by kubernetes and skaffold
 - Handles concurrency
-- All microservices are hosted differently in docker container and it communicated with each other using async communication techanic (event-bus)
+- All microservices are hosted differently in docker container and it communicates with one another using async communication techanic (event-bus)
 - If certain services went down then also other services will be fully functional.
+- Simple implemented search feature by their title
 
 
 ## Tech Implemented:
@@ -28,12 +29,16 @@ The main reason is the one server can't handle so much traffic at a time and nee
   - react 
   - bootstrap 
   - language used: javascript
-- **backend:** 
+- **BackEnd:** 
   - Language used: typescript
   - mongoose 
   - NATS streaming server as a event bus
   - Jest for testing
   - redis server for performing jobs and stripe for performing payments
+
+## Documentation:
+
+Documenation for this project can be found [here](./Docs/DOCUMENTATION.md)  
 
 ## Installation Info (locally):
 
@@ -53,26 +58,26 @@ The main reason is the one server can't handle so much traffic at a time and nee
   ```bash
   npm run test
   ```
-- Check and verify that each test passes and if you are facing any issue than try reinstalling and verify thet all package are available.
+- Check and verify that each test passes and if you are facing any issue than try reinstalling and also verify that all package are available.
 
-<!-- ### Common folder: -->
-**Small Note:**
-- Common folder is the submodule which orginally shared the common source which is been published on npm websites. Nothing that much important if you delete that submodule as it is already published and hosted on npm
+**Note:**
+  Common folder is the submodule which orginally shared the common source code between each services which has been published on npm websites. Nothing that much important if you delete that submodule.
 
 - After testing and installing package make you you have ingress-nginx enable on your system.
 Now go to you host file
-In Windows: C:\Windows\System32\Drivers\etc\hosts
-In Linux\MacOS: \etc\hosts
-Edit it at the bottom add 127.0.0.1 eventure.dev
-and save it
+> In Windows: C:\Windows\System32\Drivers\etc\hosts
+  In Linux\MacOS: \etc\hosts
+  Edit it at the bottom add 127.0.0.1 eventure.dev
+  and save it
 - If you are using minikube then run `minikube ip`
 And use that ip instead of 127.0.0.1 (i.e. minikube_ip eventure.dev)
-So, this tries to run eventure.dev locally instead of finding it online on browser
 
-Now after completing all steps and configuration let's run the application.
+So, this edit tries to run *eventure.dev* locally instead of finding it online via browser
+
+Now after completing all the above steps and configuration, let's run the application.
 
 ## Running it locally:
-- Now you need to create three kubernetes secrets in order to run this. So just edit the three givn commands values as per the requirement
+- Now, you need to create three kubernetes secrets in order to run this. So just edit the three given commands values as per the requirement
 
 - For JWT:
   ```bash
@@ -89,7 +94,7 @@ Now after completing all steps and configuration let's run the application.
   kubectl create secret generic stripe-p-secret --from-literal=STRIPE_P_KEY=<'use public key given by stripe'>
   ```
 
-- Now this just run 
+- Now, just run 
 
   ```bash
   skaffold dev
@@ -111,12 +116,13 @@ Get info about [ingress-nginx](https://kubernetes.github.io/ingress-nginx/deploy
 
 ## Future Updates:
 
-- Adding the functionality of buying multiple tickets at a time.
-- Adding `socketIO` for creating realtime communication system.
-- Adding the functionality of adding a custom image and background for individual event by the organizer.
-- Adding credit system. (just like in steam for buying and selling tickets as, for now after selling ticket the buyer is not getting anything)
+- [ ] Adding the functionality of buying multiple tickets at a time.
+- [ ] Adding `socketIO` for creating realtime communication system.
+- [ ] Adding the functionality of adding a custom image and background for individual event by the organizer.
+- [ ] Adding credit system. (just like in steam app, for buying and selling tickets as at present after selling the ticket the buyer is getting nothing)
+- [ ] Adding the various categories for the event
   
-## Issue and Contribution:
+## Issues and Contribution:
 
 - If you found bug or facing problem in something.
 - If you got any new idea

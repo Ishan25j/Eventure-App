@@ -5,27 +5,39 @@ import useRequest from '../../hooks/use-request';
 
 const OrderShow = ({ order, reqErr, env, currentUser }) => {
 
-    // * Handle Error
-    if (order === undefined || reqErr) {
-      return (
-        <div className="handle-error">
-          <center>
-            <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
-          </center>
-        </div>
-      );
-    }
+  // * Handle Error
+  if (order === undefined || reqErr) {
+    return (
+      <div className="handle-error">
+        <center>
+          <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
+        </center>
+      </div>
+    );
+  }
 
-    const [timeLeft, setTimeLeft] = useState(0);
-    const [success, setSuccess] = useState(false);
+  // * If user is not logged In
+  if (currentUser === undefined || currentUser === null) {
+    setTimeout(() => {Router.push('/')}, 2000); 
+    return (
+      <div style={{marginTop: '5rem', color: 'red', fontSize: 'larger'}}>
+        <center>
+          Please Logged In first to see your Orders
+        </center>
+      </div>
+    )
+  }
+  
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [success, setSuccess] = useState(false);
 
-    const { doRequest, errors } = useRequest({
-        url: '/api/payments',
-        method: 'post',
-        body: {
-        orderId: order.id,
-        },
-        onSuccess: () => { setSuccess(true); setTimeout(() => {Router.push('/')}, 2000) }
+  const { doRequest, errors } = useRequest({
+      url: '/api/payments',
+      method: 'post',
+      body: {
+      orderId: order.id,
+      },
+      onSuccess: () => { setSuccess(true); setTimeout(() => {Router.push('/')}, 2000) }
   });
 
   // * See the formate of the given date

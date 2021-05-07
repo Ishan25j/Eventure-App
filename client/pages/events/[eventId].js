@@ -1,6 +1,6 @@
 import useRequest from "../../hooks/use-request";
 import Router from "next/router";
-const EventShow = ({ event, reqErr }) => {
+const EventShow = ({ event, reqErr, currentUser }) => {
 
   // * Handle Error
   if (event === undefined || reqErr) {
@@ -11,6 +11,20 @@ const EventShow = ({ event, reqErr }) => {
         </center>
       </div>
     );
+  }
+
+  console.log(currentUser);
+
+  // * If user is not logged In
+  if (currentUser === undefined || currentUser === null) {
+    setTimeout(() => {Router.push('/')}, 2000); 
+    return (
+      <div style={{marginTop: '5rem', color: 'red', fontSize: 'larger'}}>
+        <center>
+          Please Logged In first to purchase this ticket
+        </center>
+      </div>
+    )
   }
 
   const { doRequest, errors } = useRequest({
@@ -53,7 +67,7 @@ const EventShow = ({ event, reqErr }) => {
                 At :  <strong>{new Date(event.date).getUTCHours()} hours: {new Date(event.date).getUTCMinutes()} minutes</strong>
               </div>
               <p className="event-ticket" style={Styles(event.ticketsLeft)}>Ticket Left: {event.ticketsLeft}</p>
-              <p className="event-price">To pay: <br/> <span className="event-price" style={{'color': 'green'}}>{event.price}$</span></p>
+              <p className="event-price">To pay: <br/> <span className="event-price" style={{'color': 'green'}}>$ {event.price}</span></p>
               { errors }
               { event.ticketsLeft === 0 && <div class="alert alert-danger" role="alert"><center>Ticket Not Available 😔. <br/> Come after Sometime.</center></div>}
               { !dateValid && <div class="alert alert-warning" role="alert"><center>Ticket can't be Bought before 10 mintues of a event 😔.</center></div>}

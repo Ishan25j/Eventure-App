@@ -66,7 +66,7 @@ const NewEvent = ({ currentUser }) => {
                     />
                 </div>
                 <div className="mb-3">
-                    <p className="form-label">Date Time Picker:</p>
+                    <p className="form-label">Date and Time for Event:</p>
                     <input 
                     type="datetime-local" 
                     id="datetime"

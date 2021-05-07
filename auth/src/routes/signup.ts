@@ -27,7 +27,7 @@ router.post('/api/users/signup',
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-        throw new BadRequestError('Email in use!!');
+        throw new BadRequestError('Email is already!!');
     }
 
     const user = User.build({email, password});

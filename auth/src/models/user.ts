@@ -25,6 +25,8 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc  extends mongoose.Document {
     email: string;
     password: string;
+
+    // todo: Credits is for future update where sell tocket money will be stored
     credits: number;
 }
 

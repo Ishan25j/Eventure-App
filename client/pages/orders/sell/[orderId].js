@@ -6,11 +6,11 @@ const OrderSell = ({ order, reqErr }) => {
     if (order === undefined || reqErr) {
         return (
             <div className="handle-error">
-                <center>
-                <h1 style={{color: 'red', margin: '20rem auto'}}>{reqErr.message}</h1>
-                </center>
+              <center>
+                <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
+              </center>
             </div>
-            );
+        );
     }
 
     const { doRequest, errors } = useRequest({

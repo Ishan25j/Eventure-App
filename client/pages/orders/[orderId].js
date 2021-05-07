@@ -10,7 +10,7 @@ const OrderShow = ({ order, reqErr, env, currentUser }) => {
       return (
         <div className="handle-error">
           <center>
-            <h1 style={{color: 'red', margin: '20rem auto'}}>{reqErr.message}</h1>
+            <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
           </center>
         </div>
       );
@@ -86,7 +86,7 @@ const OrderShow = ({ order, reqErr, env, currentUser }) => {
           !success
           ?
           <div>
-            <h1 style={{'margin': '10rem', 'color': '#007bff'}}>
+            <h1 className="pay-order">
               Time left to pay: {timeLeft} seconds
             </h1>  
             <StripeCheckout

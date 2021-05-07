@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 
 const Home = ({ events, reqErr }) => {
@@ -8,7 +7,7 @@ const Home = ({ events, reqErr }) => {
     return (
       <div className="handle-error">
         <center>
-          <h1 style={{color: 'red', margin: '20rem auto'}}>Error: {reqErr.message}</h1>
+          <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
         </center>
       </div>
     );
@@ -18,11 +17,13 @@ const Home = ({ events, reqErr }) => {
   const Styles = (ticket) => {
     if (ticket < 5) {
       return {
-        'color': 'red'
+        'color': 'red',
+        'fontSize': 'larger'
       }
     } else {
       return {
-        'color': '#007bff'
+        'color': 'rgb(68 158 255)',
+        'fontSize': 'larger'
       }
     }
   }
@@ -118,9 +119,6 @@ const Home = ({ events, reqErr }) => {
         { 
           (events.length <= 0 || !IsValid) && <div className="container no-event" ><br/><center>No Event Available. Try to Create One</center> <br/> <Link href="/events/new"><a className="btn btn-success">Create Event</a></Link> </div> 
         }
-        {/* { 
-          IsValid && <div className="container no-event" ><br/><center>No Event Available. Try to Create One</center> <br/> <Link href="/events/new"><a className="btn btn-success">Create Event</a></Link> </div> 
-        } */}
         </div>
     </div>
   )

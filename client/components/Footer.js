@@ -1,3 +1,4 @@
+// * didn't added yet
 const Footer = () => {
     return ( 
         <footer>

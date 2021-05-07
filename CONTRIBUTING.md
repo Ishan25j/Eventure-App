@@ -1,4 +1,4 @@
-# Contributing to Eventure
+# Contributing to Eventure-App
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
@@ -13,25 +13,25 @@ We love your input! We want to make contributing to this project as easy and tra
 
 ### 1. Fork it :fork_and_knife:
 
-You can get your own fork/copy of [Eventure](https://github.com/Ishan25j/Eventure) by using the <kbd><b>Fork</b></kbd></a> button.
+You can get your own fork/copy of [Eventure-App](https://github.com/Ishan25j/Eventure-App) by using the <kbd><b>Fork</b></kbd></a> button.
 
-[![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)](https://github.com/Ishan25j/Eventure)
+[![Fork Button](https://help.github.com/assets/images/help/repository/fork_button.jpg)](https://github.com/Ishan25j/Eventure-App)
 
 ### 2. Clone it :busts_in_silhouette:
 
 You need to clone (download) it to local machine using
 
 ```sh
-git clone https://github.com/Your_Username/Eventure.git
+git clone https://github.com/Your_Username/Eventure-App.git
 ```
 
 > This makes a local copy of repository in your machine.
 
-Once you have cloned the `Eventure` repository in GitHub, move to that folder first using change directory command.
+Once you have cloned the `Eventure-App` repository in GitHub, move to that folder first using change directory command.
 
 ```sh
-# This will change directory to a folder Eventure
-cd Eventure
+# This will change directory to a folder Eventure-App
+cd Eventure-App
 ```
 
 Move to this folder for all other commands.
@@ -42,14 +42,14 @@ Run the following commands to see that _your local copy_ has a reference to _you
 
 ```sh
 git remote -v
-origin  https://github.com/Your_Username/Eventure.git (fetch)
-origin  https://github.com/Your_Username/Eventure.git (push)
+origin  https://github.com/Your_Username/Eventure-App.git (fetch)
+origin  https://github.com/Your_Username/Eventure-App.git (push)
 ```
 
-Now, add a reference to the original [Eventure](https://github.com/Ishan25j/Eventure) repository using
+Now, add a reference to the original [Eventure-App](https://github.com/Ishan25j/Eventure-App) repository using
 
 ```sh
-git remote add upstream https://github.com/Ishan25j/Eventure.git
+git remote add upstream https://github.com/Ishan25j/Eventure-App.git
 ```
 
 > This adds a new remote named **_upstream_**.
@@ -58,10 +58,10 @@ See the changes using
 
 ```sh
 git remote -v
-origin    https://github.com/Your_Username/Eventure.git (fetch)
-origin    https://github.com/Your_Username/Eventure.git (push)
-upstream  https://github.com/Ishan25j/Eventure.git (fetch)
-upstream  https://github.com/Ishan25j/Eventure.git (push)
+origin    https://github.com/Your_Username/Eventure-App.git (fetch)
+origin    https://github.com/Your_Username/Eventure-App.git (push)
+upstream  https://github.com/Ishan25j/Eventure-App.git (fetch)
+upstream  https://github.com/Ishan25j/Eventure-App.git (push)
 ```
 
 ### 4. Sync it :recycle:
@@ -79,13 +79,13 @@ git checkout master
 # Reset local `master` branch to match `upstream` repository's `master` branch
 git reset --hard upstream/master
 
-# Push changes to your forked `Eventure` repo
+# Push changes to your forked `Eventure-App` repo
 git push origin master
 ```
 
 ### 5. Ready Steady Go... :turtle: :rabbit2:
 
-Once you have completed these steps, you are ready to start contributing by checking our `Help Wanted` Issues and creating [pull requests](https://github.com/Ishan25j/Eventure/pulls).
+Once you have completed these steps, you are ready to start contributing by checking our `Help Wanted` Issues and creating [pull requests](https://github.com/Ishan25j/Eventure-App/pulls).
 
 ### 6. Create a new branch :bangbang:
 

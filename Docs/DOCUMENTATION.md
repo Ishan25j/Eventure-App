@@ -90,4 +90,6 @@ Payment Successful
 
 ## Video Demonstration:
 
-![Video](./video/Eventure.mp4)
+https://user-images.githubusercontent.com/53286842/117527118-264fc400-afe7-11eb-905c-9c0de68bdd43.mp4
+
+If you want to see this video in youtube, then here is the [link](https://www.youtube.com/watch?v=TRNRVy1k-Jg)

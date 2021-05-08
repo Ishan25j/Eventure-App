@@ -1,5 +1,12 @@
 # Documentation
 
+## Video Demonstration:
+
+https://user-images.githubusercontent.com/53286842/117527118-264fc400-afe7-11eb-905c-9c0de68bdd43.mp4
+
+If you want to see this video in youtube, then here is the [link](https://www.youtube.com/watch?v=TRNRVy1k-Jg)
+
+
 ## SignUp:
 
 For testing:
@@ -86,10 +93,3 @@ Payment Successful
 - One can sell the purchased ticket if that event is yet not started.
 
 ![my orders](screenshots/my-orders.png)
-
-
-## Video Demonstration:
-
-https://user-images.githubusercontent.com/53286842/117527118-264fc400-afe7-11eb-905c-9c0de68bdd43.mp4
-
-If you want to see this video in youtube, then here is the [link](https://www.youtube.com/watch?v=TRNRVy1k-Jg)

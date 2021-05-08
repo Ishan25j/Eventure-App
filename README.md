@@ -3,15 +3,6 @@
 
 Eventure is a WebApp created for selling tickets for various events (i.e. concerts, DJ parties, Sports event tickets and many more...) on online platform.
 
-## Why Eventure and what is the difference?
-Let's take example to understand it easily.
-- Have you ever booked an indian railway ticket?
-If yes, then you might have surely experience that servers are some times hangy (gets hangs) and slow down very frequently.
-
-- So, why is it happening?
-The main reason is, the Single Monolithic Server can't handle that much traffic at a time and need to add more servers at that movement which is some how hard.
-
-- So, By keeping all this problem in mind. Eventure WebApp is been created using microservices architecture which can be scaled very easily using kubernetes.
 
 ## Key feature of Eventure WebApp:
 
@@ -22,6 +13,15 @@ The main reason is, the Single Monolithic Server can't handle that much traffic 
 - If certain services went down then also other services will be fully functional.
 - Simple implemented search feature by their title
 
+## Why to use Microservices Architecture?
+Let's take example to understand it easily.
+- Have you ever booked an indian railway ticket?
+If yes, then you might have surely experience that servers are some times hangy (gets hangs) and slow down very frequently.
+
+- So, why is it happening?
+The main reason is, the Single Monolithic Server can't handle that much traffic at a time and need to add more servers at that movement which is some how hard.
+
+- So, By keeping all this problem in mind. Eventure WebApp is been created using microservices architecture which can be scaled very easily using kubernetes.
 
 ## Tech Implemented:
 - **FrontEnd:** 

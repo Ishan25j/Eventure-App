@@ -9,7 +9,7 @@ Eventure is a WebApp created for selling tickets for various events (i.e. concer
 - It has Microservice architecture
 - It runs in docker container which is maintained by kubernetes and skaffold
 - Handles concurrency
-- All microservices are hosted differently in docker container and it communicates with one another using async communication techanic (event-bus)
+- All microservices are hosted differently in docker container and it communicates with one another using async communication technique (event-bus)
 - If certain services went down then also other services will be fully functional.
 - Simple implemented search feature by their title
 

@@ -2,6 +2,7 @@ import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateReque
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
+import { Event } from '../models/events-srv';
 import { Order } from '../models/order';
 import { natsWrapper } from '../nats-wrapper';
 
@@ -36,17 +37,26 @@ router.post('/api/orders/sell/', requireAuth, [
         throw new BadRequestError('Ticket is expired');
     }
 
+    // * increment ticketsLeft
+    const event = await Event.findById(order.event.id);
+    if (!event) {
+        throw new Error('Event not found');
+    }
+    event.ticketsLeft = event.ticketsLeft + 1;
+    await event.save();
+
     // * sell ticket if valid
     order.set({
         status: OrderStatus.Cancelled
     });
 
-    await order!.save();
+    await order.save();
 
     
 
     // * publish the order cancelled event
     new OrderCancelledPublisher(natsWrapper.client).publish({
+        source: 'sell',
         id: order.id,
         version: order.version,
         event: {

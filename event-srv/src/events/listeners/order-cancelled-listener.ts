@@ -27,6 +27,13 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
         // * Save the ticket
         await event.save();
 
+        // * getting the events
+        const events = await Event.find();
+        
+        // * emit events using socketIO
+        global.io.emit('events', events);
+        global.io.emit('event', event);
+
         // * updated about event ticket is updated
         await new EventUpdatedPublisher(this.client).publish({
             id: event.id,

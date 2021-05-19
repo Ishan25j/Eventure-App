@@ -19,7 +19,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@ijeventure/common": "^1.0.6",
+        "@ijeventure/common": "^1.0.10",
         "@types/body-parser": "^1.19.0",
         "@types/cookie-session": "^2.0.42",
         "@types/express-validator": "^3.0.0",
@@ -34,6 +34,7 @@
         "mongoose": "^5.12.3",
         "mongoose-update-if-current": "^1.4.0",
         "node-nats-streaming": "^0.3.2",
+        "socket.io": "^4.1.1",
         "ts-node-dev": "^1.1.6",
         "typescript": "^4.2.3"
     },

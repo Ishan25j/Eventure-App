@@ -1,6 +1,6 @@
 import { Listener, OrderCancelledEvent, OrderStatus, Subjects } from "@ijeventure/common";
 import { Message } from "node-nats-streaming";
-import { Order } from "../../models/order";
+import { Order, OrderDoc } from "../../models/order";
 import { queueGroupName } from "./queue-group-name";
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
@@ -10,12 +10,26 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
 
     async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
 
-        // * find order having appropriate version
-        const order = await Order.findOne({
-            _id: data.id,
-            version: (data.version - 1)
-        });
+        const ord = await Order.find();
+        console.log(ord);
 
+        var order: OrderDoc | null;
+        
+        // * is source is sell or else
+        if (data.source && data.source === 'sell') {   
+            // * find order having appropriate version
+            order = await Order.findOne({
+                _id: data.id,
+                version: (data.version - 2)
+            });
+        } else {
+            // * find order having appropriate version
+            order = await Order.findOne({
+                _id: data.id,
+                version: (data.version - 1)
+            });
+        }
+        
         // * If order is not found
         if (!order) {
             throw new Error('Order not found');

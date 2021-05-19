@@ -1,19 +1,58 @@
 import useRequest from "../../hooks/use-request";
 import Router from "next/router";
-const EventShow = ({ event, reqErr, currentUser }) => {
+import { useEffect, useState } from "react";
+
+import { io } from "socket.io-client";
+
+function useSocket(url) {
+  const [socket, setSocket] = useState(null)
+
+  useEffect(() => {
+    const socketIo = io(url, { reconnection: true })
+
+    setSocket(socketIo)
+
+    function cleanup() {
+      socketIo.disconnect()
+    }
+    return cleanup
+
+    // should only run once and not on every re-render,
+    // so pass an empty array
+  }, [])
+
+  return socket
+}
+
+const EventShow = ({ getEvent, reqErr, currentUser }) => {
+
+  const socket = useSocket();
+  const [event, setEvent] = useState(getEvent);
+
+  useEffect(() => {
+    if (getEvent) {
+      setEvent(getEvent);
+    }
+  }, []);
 
   // * Handle Error
   if (event === undefined || reqErr) {
     return (
       <div className="handle-error">
         <center>
-          <h1 style={{color: 'red', margin: '20rem auto'}}> Can't Load page <br /> Error {reqErr.message}</h1>
+          <h1 style={{color: 'red', margin: '20rem 5rem'}}> Can't Load page <br /> Error {reqErr && reqErr.message}</h1>
         </center>
       </div>
     );
   }
 
-  console.log(currentUser);
+  useEffect(() => {
+    if (socket) {
+      socket.on('event', data => {
+        setEvent(data);
+      })
+    }
+  }, [socket]);
 
   // * If user is not logged In
   if (currentUser === undefined || currentUser === null) {
@@ -90,7 +129,7 @@ EventShow.getInitialProps = async (context, client) => {
     try {
       
       const { data } = await client.get(`/api/events/${eventId}`);
-      return { event: data };
+      return { getEvent: data };
 
     } catch (error) {
 

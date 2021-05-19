@@ -14,6 +14,10 @@ spec:
             backend:
               serviceName: auth-srv
               servicePort: 3000
+          - path: /socket.io/?(.*)
+            backend:
+              serviceName: event-srv
+              servicePort: 3000
           - path: /api/events/?(.*)
             backend:
               serviceName: event-srv

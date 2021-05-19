@@ -77,6 +77,14 @@ eventSchema.set('versionKey', 'version');
 // * added the plugin to update the version of the document
 eventSchema.plugin(updateIfCurrentPlugin);
 
+// * This is Mongoose pre-save hook (i.e. Mongoose Middleware)
+eventSchema.pre('save', async function(done) {
+    if(this.isModified('ticketsLeft')){
+        this.set('version', this.get('version') - 1);
+    }
+    // * will tell mongoose that we are done
+    done();
+});
 
 // * create a static method to create a document that satisfy the given types
 eventSchema.statics.build = (attrs: EventAtts) => {

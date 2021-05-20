@@ -119,7 +119,7 @@ Get info about [ingress-nginx](https://kubernetes.github.io/ingress-nginx/deploy
 - [ ] Adding the functionality of buying multiple tickets at a time.
 - [ ] Adding `socketIO` for creating realtime communication system.
 - [ ] Adding the functionality of adding a custom image and background for individual event by the organizer.
-- [ ] Adding credit system. (just like in steam app, for buying and selling tickets as at present after selling the ticket the buyer is getting nothing)
+- [ ] Adding credit system. (just like in steam app, for buying and selling tickets as at present after selling the ticket the seller is getting nothing)
 - [ ] Adding the various categories for the event
   
 ## Issues and Contribution:

@@ -58,7 +58,7 @@ router.post('/api/orders/sell/', requireAuth, [
     new OrderCancelledPublisher(natsWrapper.client).publish({
         source: 'sell',
         id: order.id,
-        version: order.version,
+        version: order.version - 1,
         event: {
             id: order.event.eventId
         }

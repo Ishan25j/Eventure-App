@@ -24,7 +24,7 @@ function useSocket(url) {
   return socket
 }
 
-const EventShow = ({ getEvent, reqErr, currentUser }) => {
+const EventShow = ({ getEvent, eventId, reqErr, currentUser }) => {
 
   const socket = useSocket();
   const [event, setEvent] = useState(getEvent);
@@ -49,7 +49,9 @@ const EventShow = ({ getEvent, reqErr, currentUser }) => {
   useEffect(() => {
     if (socket) {
       socket.on('event', data => {
-        setEvent(data);
+        if (data.id === eventId) {
+          setEvent(data);
+        }
       })
     }
   }, [socket]);
@@ -129,7 +131,7 @@ EventShow.getInitialProps = async (context, client) => {
     try {
       
       const { data } = await client.get(`/api/events/${eventId}`);
-      return { getEvent: data };
+      return { getEvent: data, eventId };
 
     } catch (error) {
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { io } from "socket.io-client";
 
+// * For creating connection with the server socket
 function useSocket(url) {
   const [socket, setSocket] = useState(null)
 
@@ -46,6 +47,7 @@ const EventShow = ({ getEvent, eventId, reqErr, currentUser }) => {
     );
   }
 
+  // * If event is updated then listen for event data using socket 
   useEffect(() => {
     if (socket) {
       socket.on('event', data => {

@@ -8,7 +8,6 @@ import { natsWrapper } from './nats-wrapper';
 // * imports for socketIO
 import http from 'http';
 import socketIO from 'socket.io';
-import jwt from 'jsonwebtoken';
 
 // * declare io globally
 declare global {
@@ -78,13 +77,13 @@ const start = async () => {
 }
 
 
-// * create a globally define socket
 const server = http.createServer(app);
 
 server.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
 
+// * create a globally define socket
 global.io = new socketIO.Server(server);
 
 // * On connection with server
@@ -95,7 +94,7 @@ global.io.on('connection', socket => {
 
   // * If client disconnects
   socket.on('disconnect', reason => {
-    console.log(reason);
+    console.log('connection close /', reason);
   })
 });
 

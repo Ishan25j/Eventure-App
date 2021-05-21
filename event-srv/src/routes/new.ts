@@ -45,7 +45,7 @@ router.post('/api/events/new', requireAuth, [
 
     await event.save();
 
-    // * will work if not in test environment
+    // * will not execute if in test environment
     if (process.env.NODE_ENV !== 'test') {
         
         // * emit event into socketIO

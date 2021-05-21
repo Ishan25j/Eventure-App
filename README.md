@@ -94,7 +94,7 @@ Now after completing all the above steps and configuration, let's run the applic
   kubectl create secret generic stripe-p-secret --from-literal=STRIPE_P_KEY=<'use public key given by stripe'>
   ```
 
-- Now, just run 
+- Now, just run
 
   ```bash
   skaffold dev
@@ -117,7 +117,7 @@ Get info about [ingress-nginx](https://kubernetes.github.io/ingress-nginx/deploy
 ## Future Updates:
 
 - [ ] Adding the functionality of buying multiple tickets at a time.
-- [ ] Adding `socketIO` for creating realtime communication system.
+- [x] Adding `socketIO` for creating realtime communication system.
 - [ ] Adding the functionality of adding a custom image and background for individual event by the organizer.
 - [ ] Adding credit system. (just like in steam app, for buying and selling tickets as at present after selling the ticket the seller is getting nothing)
 - [ ] Adding the various categories for the event

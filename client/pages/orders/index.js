@@ -87,7 +87,8 @@ const OrderIndex = ({ orders, reqErr }) => {
       <ul className="list-group container">
         { orders.length === 0 && <h3>No Orders are availbale to show here.</h3> }
         {orders.map((order) => {
-          console.log(order.event.name , new Date(order.event.date.slice(0,-1)), new Date(),(new Date(order.event.date.slice(0,-1)) - new Date())/1000);
+          // * uncomment for debugging
+          // console.log(order.event.name , new Date(order.event.date.slice(0,-1)), new Date(),(new Date(order.event.date.slice(0,-1)) - new Date())/1000);
           return (
             <li className="list-group-item d-flex justify-content-between align-items-center" key={order.id}>
               <h6 >Event: <span className="event-name-order">{order.event.name}-{order.event.id}</span></h6>

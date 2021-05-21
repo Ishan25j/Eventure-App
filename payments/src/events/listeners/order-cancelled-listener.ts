@@ -1,6 +1,6 @@
 import { Listener, OrderCancelledEvent, OrderStatus, Subjects } from "@ijeventure/common";
 import { Message } from "node-nats-streaming";
-import { Order } from "../../models/order";
+import { Order, OrderDoc } from "../../models/order";
 import { queueGroupName } from "./queue-group-name";
 
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
@@ -9,7 +9,7 @@ export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
     queueGroupName = queueGroupName;
 
     async onMessage(data: OrderCancelledEvent['data'], msg: Message) {
-
+       
         // * find order having appropriate version
         const order = await Order.findOne({
             _id: data.id,

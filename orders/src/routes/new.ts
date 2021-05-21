@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { Order } from '../models/order';
 import { Event } from '../models/events-srv';
 import { natsWrapper } from '../nats-wrapper';
-import { OrderCreatedPublisher } from '../events/publishers/order-created-listener';
+import { OrderCreatedPublisher } from '../events/publishers/order-created-publisher';
 
 const router = express.Router();
 
@@ -45,6 +45,10 @@ router.post('/api/orders', requireAuth, [
 
     // * setting expiration to current time + 15 minutes
     expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_SECONDS);
+
+    // * decrement ticketsLeft
+    eventData.ticketsLeft = eventData.ticketsLeft - 1;
+    await eventData.save();
 
     // * Build the order and save it to the database
     const order = Order.build({

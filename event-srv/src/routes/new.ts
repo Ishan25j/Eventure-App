@@ -45,6 +45,13 @@ router.post('/api/events/new', requireAuth, [
 
     await event.save();
 
+    // * will not execute if in test environment
+    if (process.env.NODE_ENV !== 'test') {
+        
+        // * emit event into socketIO
+        const events = await Event.find();
+        global.io.emit('events', events);
+    }
     
     // * emit event created event
 

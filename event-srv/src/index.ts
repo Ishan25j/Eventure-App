@@ -5,6 +5,19 @@ import { OrderCreatedListener } from './events/listeners/order-created-listener'
 import { app } from "./app";
 import { natsWrapper } from './nats-wrapper';
 
+// * imports for socketIO
+import http from 'http';
+import socketIO from 'socket.io';
+
+// * declare io globally
+declare global {
+  namespace NodeJS {
+      interface Global {
+          io: socketIO.Server 
+      }
+  }
+}
+
 // * For connecting to mongoDB instance and NATS server
 const start = async () => {
 
@@ -63,8 +76,26 @@ const start = async () => {
   }
 }
 
-app.listen(3000, () => {
+
+const server = http.createServer(app);
+
+server.listen(3000, () => {
   console.log('Listening on port 3000!');
+});
+
+// * create a globally define socket
+global.io = new socketIO.Server(server);
+
+// * On connection with server
+global.io.on('connection', socket => {
+  console.log(`New ${socket.id} client connected`);
+
+  socket.emit('conn', 'connected');
+
+  // * If client disconnects
+  socket.on('disconnect', reason => {
+    console.log('connection close /', reason);
+  })
 });
 
 // * running start function for connection to mongoDB instance

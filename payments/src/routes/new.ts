@@ -62,8 +62,12 @@ router.post('/api/payments', requireAuth, [
         stripeId: charge.id
     });
 
-    // * comment payment.save() if running test
-    // await payment.save();
+    // * will save payment if not in test environment
+    if (process.env.NODE_ENV !== 'test') {
+        
+        // * save payment
+        await payment.save();
+    }
 
     await new PaymentCreatedPublisher(natsWrapper.client).publish({
         id: payment.id,

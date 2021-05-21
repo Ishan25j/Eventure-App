@@ -1,7 +1,40 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
 
-const Home = ({ events, reqErr }) => {
+import { io } from "socket.io-client";
+
+// * For creating connection with the server socket
+function useSocket(url) {
+  const [socket, setSocket] = useState(null)
+
+  useEffect(() => {
+    const socketIo = io(url, { reconnection: true })
+
+    setSocket(socketIo)
+
+    function cleanup() {
+      socketIo.disconnect()
+    }
+    return cleanup
+
+    // should only run once and not on every re-render,
+    // so pass an empty array
+  }, [])
+
+  return socket
+}
+
+const Home = ({ getEvents, reqErr }) => {
   
+  const socket = useSocket();
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    if (getEvents) {
+      setEvents(getEvents);
+    }
+  }, []);
+
   // * Handle Error
   if (events === undefined || reqErr) {
     return (
@@ -12,6 +45,21 @@ const Home = ({ events, reqErr }) => {
       </div>
     );
   }
+
+
+  // * If event is updated then listen for event data using socket
+  useEffect(() => {
+    if (socket) {
+      // * use below commented code for testing socket connection
+      // socket.on('conn', data => {
+      //   console.log(data);
+      // })
+      socket.on('events', data => {
+        setEvents(data);
+      })
+    }
+  }, [socket]);
+
 
   // * set color red if ticket left is less than 5
   const Styles = (ticket) => {
@@ -130,7 +178,7 @@ Home.getInitialProps = async (context, client, currentUser) => {
   try {
     const { data } = await client.get('/api/events');
 
-    return { events: data };
+    return { getEvents: data };
     
   } catch (error) {
 

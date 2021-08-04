@@ -106,7 +106,7 @@ and it will start the application.
 
 For get into [docker](https://www.docker.com/get-started).
 
-For getting into [kubernetes](https://kubernetes.io/docs/tasks/tools/).
+For get into [kubernetes](https://kubernetes.io/docs/tasks/tools/).
 
 If you want to use [minikube](https://minikube.sigs.k8s.io/docs/start/).
 

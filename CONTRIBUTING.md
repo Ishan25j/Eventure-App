@@ -132,7 +132,9 @@ Then add a title and description to your pull request that explains your preciou
 Use the templates and edit them as per the requirement for generating the respected request.
 
 For bug report: [Use this template](.github/ISSUE_TEMPLATE/bug_report.md)
+
 For feature request: [Use this template](.github/ISSUE_TEMPLATE/feature_request.md)
+
 For custom request: [Use this template](.github/ISSUE_TEMPLATE/custom.md)
 
 Sit and relax till we review your PR, you've made your contribution to our project.

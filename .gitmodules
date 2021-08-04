@@ -1,0 +1,3 @@
+[submodule "ijeventure-common"]
+	path = ijeventure-common
+	url = https://github.com/Ishan25j/ijeventure-common

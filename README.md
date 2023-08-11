@@ -3,25 +3,32 @@
 
 Eventure is a WebApp created for selling tickets for various events (i.e. concerts, DJ parties, Sports event tickets and many more...) on online platform.
 
+## Documentation:
+
+Documentation for this project can be found [here](./Docs/DOCUMENTATION.md)  
+
+https://user-images.githubusercontent.com/53286842/117527118-264fc400-afe7-11eb-905c-9c0de68bdd43.mp4
+
+If you want to see this video in youtube, then here is the [link](https://www.youtube.com/watch?v=TRNRVy1k-Jg)
 
 ## Key feature of Eventure WebApp:
 
-- It has Microservice architecture
-- It runs in docker container which is maintained by kubernetes and skaffold
+- It has a Microservice architecture
+- It runs in a docker container which is maintained by Kubernetes and Skaffold
 - Handles concurrency
-- All microservices are hosted differently in docker container and it communicates with one another using async communication technique (event-bus)
-- If certain services went down then also other services will be fully functional.
+- All microservices are hosted differently in the docker container, and it communicates with one another using the async communication technique (event-bus)
+- If certain services go down, then too other services will be fully functional.
 - Simple implemented search feature by their title
 
 ## Why to use Microservices Architecture?
-Let's take example to understand it easily.
-- Have you ever booked an indian railway ticket?
-If yes, then you might have surely experience that servers are some times hangy (gets hangs) and slow down very frequently.
+Let's take an example to understand it easily.
+- Have you ever booked an Indian railway ticket?
+If yes, then you might have surely experienced that servers are sometimes hangy (gets hangs) and slow down very frequently.
 
 - So, why is it happening?
-The main reason is, the Single Monolithic Server can't handle that much traffic at a time and need to add more servers at that movement which is some how hard.
+The main reason is the Single Monolithic Server can't handle that much traffic at a time and need to add more servers at that movement which is somehow hard.
 
-- So, By keeping all this problem in mind. Eventure WebApp is been created using microservices architecture which can be scaled very easily using kubernetes.
+- So, By keeping all these problems in mind. Eventure WebApp is created using microservices architecture which can be easily scaled using Kubernetes.
 
 ## Tech Implemented:
 - **FrontEnd:** 
@@ -32,13 +39,10 @@ The main reason is, the Single Monolithic Server can't handle that much traffic 
 - **BackEnd:** 
   - Language used: typescript
   - mongoose 
-  - NATS streaming server as a event bus
+  - NATS streaming server as an event bus
   - Jest for testing
-  - redis server for performing jobs and stripe for performing payments
+  - Redis server for performing jobs and stripe for performing payments
 
-## Documentation:
-
-Documenation for this project can be found [here](./Docs/DOCUMENTATION.md)  
 
 ## Installation Info (locally):
 
@@ -77,7 +81,7 @@ So, this edit tries to run *eventure.dev* locally instead of finding it online v
 Now after completing all the above steps and configuration, let's run the application.
 
 ## Running it locally:
-- Now, you need to create three kubernetes secrets in order to run this. So just edit the three given commands values as per the requirement
+- Now, you need to create three Kubernetes secrets in order to run this. So just edit the three given commands values as per the requirement
 
 - For JWT:
   ```bash
